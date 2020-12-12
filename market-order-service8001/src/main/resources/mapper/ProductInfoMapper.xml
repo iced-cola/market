@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.market.product.service8001.dao.ProductInfoDao">
+    <resultMap id="BaseResultMap" type="com.market.product.service8001.po.ProductInfoPo">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="product_id" property="productId" jdbcType="VARCHAR"/>
+        <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+        <result column="product_desc" property="productDesc" jdbcType="VARCHAR"/>
+        <result column="category1" property="category1" jdbcType="VARCHAR"/>
+        <result column="category2" property="category2" jdbcType="VARCHAR"/>
+        <result column="category3" property="category3" jdbcType="VARCHAR"/>
+        <result column="order" property="order" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="DOUBLE"/>
+        <result column="on_sale" property="onSale" jdbcType="INTEGER"/>
+        <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, product_id, product_name, product_desc, category1, category2, category3,
+         `order`, price, on_sale, delete_flag, create_by, create_time, update_by, update_time
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.market.product.service8001.po.ProductInfoPo">
+        insert into t_product_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="productDesc != null">
+                product_desc,
+            </if>
+            <if test="category1 != null">
+                category1
+            </if>
+            <if test="category2 != null">
+                category2
+            </if>
+            <if test="category3 != null">
+                category3
+            </if>
+            <if test="order != null">
+                `order`,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="onSale != null">
+                on_sale,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            REPLACE(UUID(), "-", ""),
+            <if test="productId != null">
+                #{productId,jdbcType=VARCHAR},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="productDesc != null">
+                #{productDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="category1 != null">
+                #{category1,jdbcType=VARCHAR}
+            </if>
+            <if test="category2 != null">
+                #{category2,jdbcType=VARCHAR}
+            </if>
+            <if test="category3 != null">
+                #{category3,jdbcType=VARCHAR}
+            </if>
+            <if test="order != null">
+                #{order,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="onSale != null">
+                #{onSale,jdbcType=BIT},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=BIT},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="queryByProductId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_product_info
+        where
+        product_id = #{productId, jdbcType=VARCHAR}
+    </select>
+
+</mapper>

@@ -1,0 +1,21 @@
+server:
+  port: 7001
+
+spring:
+  application:
+    name: market-eureka-server7001
+
+eureka:
+  instance:
+    hostname: eureka-server7001.com
+    # 客户端发送心跳的时间
+    lease-expiration-duration-in-seconds: 20
+    # 服务端收到最后一次心跳等待的时间上限，超时将删除服务
+    lease-renewal-interval-in-seconds: 500
+#    prefer-ip-address: true
+#    instance-id: eureka-server7001
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:7002/eureka/

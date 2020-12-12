@@ -1,0 +1,19 @@
+server:
+  port: 7002
+
+spring:
+  application:
+    name: market-eureka-server7002
+
+eureka:
+  instance:
+    hostname: eureka-server7002.com
+    lease-expiration-duration-in-seconds: 20
+    lease-renewal-interval-in-seconds: 500
+#    prefer-ip-address: true
+#    instance-id: eureka-server7002
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://eureka-server7001.com:7001/eureka/

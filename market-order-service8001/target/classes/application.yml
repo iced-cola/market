@@ -1,0 +1,29 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: market-product-service8001
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_shop?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+
+eureka:
+  instance:
+    hostname: product-service8001.com
+    instance-id: product-service8001
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka-server7001.com:7001/eureka,http://eureka-server7002.com:7002/eureka
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.market.product.service8001.po
+
+logging:
+  level:
+    com.market.product.service8001.dao: debug
