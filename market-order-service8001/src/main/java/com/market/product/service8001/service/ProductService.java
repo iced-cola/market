@@ -1,5 +1,8 @@
 package com.market.product.service8001.service;
 
+import com.market.product.service8001.exception.ProductException;
+import com.market.product.service8001.po.ProductInventoryPo;
+import com.market.product.service8001.util.Result;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,5 +13,21 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface ProductService {
+
+    /**
+     * 增加商品库存
+     *
+     * @param inventoryPo 库存实体
+     * @return 更新结果
+     */
+    Result<Integer> increaseStock(ProductInventoryPo inventoryPo) throws ProductException;
+
+    /**
+     * 扣除商品库存
+     *
+     * @param inventoryPo 库存实体
+     * @return 更新结果
+     */
+    Result<Integer> decreaseStock(ProductInventoryPo inventoryPo);
 
 }

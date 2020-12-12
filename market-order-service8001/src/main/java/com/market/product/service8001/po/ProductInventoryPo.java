@@ -8,12 +8,12 @@ import java.util.Date;
 
 /**
  * @author :  zhulongkun20@gmail.com
- * @create :  12-11-2020 22:37:04
- * @description :  商品信息实体类
+ * @create :  12-12-2020 12:36:43
+ * @description :  商品库存实体类
  * @since :  v1.0
  */
 @Data
-public class ProductInfoPo {
+public class ProductInventoryPo {
 
     /**
      * 主键id
@@ -32,36 +32,22 @@ public class ProductInfoPo {
     private String productName;
 
     /**
-     * 商品描述
+     * 商品库存数量
      */
-    @Length(max = 255, message = "商品名称不能超过255个字符")
-    private String productDesc;
+    @Range(min = 0, message = "商品数量不能小于0")
+    private Integer count;
 
     /**
-     * 商品分类
+     * 备注
      */
-    private String category;
+    @Length(max = 255, message = "商品备注不能超过255个字符")
+    private String remark;
 
     /**
-     * 商品采购批次
+     * 是否有效
      */
-    private String order;
-
-    /**
-     * 商品价格
-     */
-    @Range(min = 0, message = "商品价格不能小于0")
-    private double price;
-
-    /**
-     * 是否上架
-     */
-    private Integer onSale;
-
-    /**
-     * 删除标志
-     */
-    private Integer deleteFlag;
+    @Range(min = 0, max = 1, message = "有效性标识只能为0或1")
+    private Integer validation;
 
     /**
      * 创建者

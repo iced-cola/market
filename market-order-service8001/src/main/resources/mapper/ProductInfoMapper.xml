@@ -7,9 +7,7 @@
         <result column="product_id" property="productId" jdbcType="VARCHAR"/>
         <result column="product_name" property="productName" jdbcType="VARCHAR"/>
         <result column="product_desc" property="productDesc" jdbcType="VARCHAR"/>
-        <result column="category1" property="category1" jdbcType="VARCHAR"/>
-        <result column="category2" property="category2" jdbcType="VARCHAR"/>
-        <result column="category3" property="category3" jdbcType="VARCHAR"/>
+        <result column="category" property="category" jdbcType="VARCHAR"/>
         <result column="order" property="order" jdbcType="VARCHAR"/>
         <result column="price" property="price" jdbcType="DOUBLE"/>
         <result column="on_sale" property="onSale" jdbcType="INTEGER"/>
@@ -21,8 +19,8 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, product_id, product_name, product_desc, category1, category2, category3,
-         `order`, price, on_sale, delete_flag, create_by, create_time, update_by, update_time
+        id, product_id, product_name, product_desc, category, `order`, price,
+        on_sale, delete_flag, create_by, create_time, update_by, update_time
     </sql>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id"
@@ -39,14 +37,8 @@
             <if test="productDesc != null">
                 product_desc,
             </if>
-            <if test="category1 != null">
-                category1
-            </if>
-            <if test="category2 != null">
-                category2
-            </if>
-            <if test="category3 != null">
-                category3
+            <if test="category != null">
+                category
             </if>
             <if test="order != null">
                 `order`,
@@ -84,14 +76,8 @@
             <if test="productDesc != null">
                 #{productDesc,jdbcType=VARCHAR},
             </if>
-            <if test="category1 != null">
-                #{category1,jdbcType=VARCHAR}
-            </if>
-            <if test="category2 != null">
-                #{category2,jdbcType=VARCHAR}
-            </if>
-            <if test="category3 != null">
-                #{category3,jdbcType=VARCHAR}
+            <if test="category != null">
+                #{category,jdbcType=VARCHAR}
             </if>
             <if test="order != null">
                 #{order,jdbcType=VARCHAR},

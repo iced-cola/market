@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.market.product.service8001.dao.ProductCategoryDao">
+    <resultMap id="BaseResultMap" type="com.market.product.service8001.po.ProductCategoryPo">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="category_id" property="categoryId" jdbcType="VARCHAR"/>
+        <result column="category_name" property="categoryName" jdbcType="VARCHAR"/>
+        <result column="category_type" property="categoryType" jdbcType="VARCHAR"/>
+        <result column="parent_category" property="parentCategory" jdbcType="VARCHAR"/>
+        <result column="category_desc" property="categoryDesc" jdbcType="VARCHAR"/>
+        <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER"/>
+        <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, category_id, category_name, category_type, parent_category, category_desc,
+        delete_flag, create_by, create_time, update_by, update_time
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.market.product.service8001.po.ProductCategoryPo">
+        insert into t_product_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="categoryId != null">
+                category_id,
+            </if>
+            <if test="categoryName != null">
+                category_name,
+            </if>
+            <if test="categoryType != null">
+                category_type,
+            </if>
+            <if test="parentCategory != null">
+                parent_category,
+            </if>
+            <if test="categoryDesc != null">
+                category_desc,
+            </if>
+            <if test="deleteFlag != null">
+                delete_flag,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            REPLACE(UUID(), "-", ""),
+            <if test="categoryId != null">
+                #{categoryId,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryName != null">
+                #{categoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryType != null">
+                #{categoryType,jdbcType=VARCHAR},
+            </if>
+            <if test="parentCategory != null">
+                #{parentCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryDesc != null">
+                #{categoryDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=BIT},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="queryByCategoryId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_product_category
+        where
+        category_id = #{categoryId, jdbcType=VARCHAR}
+    </select>
+
+</mapper>

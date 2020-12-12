@@ -28,23 +28,19 @@ public class ProductInfoDaoTest {
     @Test
     public void insert() {
         ProductInfoPo productInfoPo = new ProductInfoPo();
-        productInfoPo.setProductId("111");
-        productInfoPo.setProductName("name1");
-        productInfoPo.setProductDesc("desc1");
-        productInfoPo.setOrder("order1");
+        productInfoPo.setProductId("2020121200001");
+        productInfoPo.setProductName("商品描述1");
+        productInfoPo.setProductDesc("商品描述1");
+        productInfoPo.setOrder("2020年12月第2批次");
         productInfoPo.setPrice(10.00);
-        productInfoPo.setOnSale(0);
-        productInfoPo.setDeleteFlag(0);
-        productInfoPo.setCreateBy("user1");
-        productInfoPo.setUpdateBy("user1");
         int insert = productInfoDao.insert(productInfoPo);
         assertEquals(insert, 1);
     }
 
     @Test
     public void queryByProductId() {
-        String id = "13605fd43bcb11eb962018597644f2f1";
-        ProductInfoPo productInfoPo = productInfoDao.queryByProductId(id);
+        String productId = "2020121200001";
+        ProductInfoPo productInfoPo = productInfoDao.queryByProductId(productId);
         log.info("result: \n{}", productInfoPo);
     }
 }
