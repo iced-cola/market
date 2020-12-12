@@ -11,6 +11,7 @@
         <module>market-eureka-server7001</module>
         <module>market-eureka-server7002</module>
         <module>market-order-service8001</module>
+        <module>market-user-service8002</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -24,11 +24,27 @@ public class ResultUtil {
         return result;
     }
 
-    public static Result<Object> success(ResultEnum resultEnum, Object data) {
+    public static Result<Object> success(Object data) {
+        Result<Object> result = new Result<>();
+        result.setCode(ResultEnum.SUCCESS.getCode());
+        result.setMessage(ResultEnum.SUCCESS.getMessage());
+        result.setData(data);
+        return result;
+    }
+
+    public static Result<Object> failed(ResultEnum resultEnum) {
         Result<Object> result = new Result<>();
         result.setCode(resultEnum.getCode());
-        result.setMessage(resultEnum.getMessage);
-        result.setData(data);
+        result.setMessage(resultEnum.getMessage());
+        result.setData(null);
+        return result;
+    }
+
+    public static Result<Object> failed(String message) {
+        Result<Object> result = new Result<>();
+        result.setCode(ResultEnum.FAILED.getCode());
+        result.setMessage(message);
+        result.setData(null);
         return result;
     }
 }

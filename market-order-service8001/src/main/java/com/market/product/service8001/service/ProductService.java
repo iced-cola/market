@@ -20,7 +20,7 @@ public interface ProductService {
      * @param inventoryPo 库存实体
      * @return 更新结果
      */
-    Result<Integer> increaseStock(ProductInventoryPo inventoryPo) throws ProductException;
+    Result<Object> increaseStock(ProductInventoryPo inventoryPo) throws ProductException;
 
     /**
      * 扣除商品库存
@@ -28,6 +28,6 @@ public interface ProductService {
      * @param inventoryPo 库存实体
      * @return 更新结果
      */
-    Result<Integer> decreaseStock(ProductInventoryPo inventoryPo);
+    Result<Object> decreaseStock(ProductInventoryPo inventoryPo) throws ProductException;
 
 }

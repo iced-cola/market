@@ -93,4 +93,12 @@
         product_id = #{productId, jdbcType=VARCHAR}
     </select>
 
+    <update id="updateStock">
+        update t_product_inventory
+        set
+        `count` = `count` + #{count, jdbcType=INTEGER}
+        where
+        product_id = #{productId, jdbcType=VARCHAR}
+    </update>
+
 </mapper>

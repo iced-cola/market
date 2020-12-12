@@ -16,12 +16,17 @@ public enum ResultEnum {
     /**
      * 请求失败
      */
-    FAILED(1, "请求失败"),
+    FAILED(-1, "请求失败"),
 
     /**
      * 请求参数错误
      */
-    PARAM_ERROR(10, "请求参数错误");
+    PARAM_ERROR(10, "请求参数错误"),
+
+    /**
+     * 无法完成请求
+     */
+    OPERATE_FAILED(70, "无法完成请求");
 
     private Integer code;
 
