@@ -22,3 +22,7 @@ eureka:
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.market.user.service8002.po.UserPo
+
+logging:
+  level:
+    com.market.user.service8002.dao: debug

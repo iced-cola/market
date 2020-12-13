@@ -1,4 +1,4 @@
-package com.market.product.service8001.util;
+package com.market.user.service8002.util;
 
 /**
  * @author :  zhulongkun20@gmail.com
