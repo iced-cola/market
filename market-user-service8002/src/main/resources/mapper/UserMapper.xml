@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.market.product.service8001.dao.ProductCategoryDao">
-    <resultMap id="BaseResultMap" type="com.market.product.service8001.po.ProductCategoryPo">
+<mapper namespace="com.market.user.service8002.dao.UserDao">
+    <resultMap id="BaseResultMap" type="com.market.user.service8002.po.UserPo">
         <result column="id" property="id" jdbcType="VARCHAR"/>
-        <result column="category_id" property="categoryId" jdbcType="VARCHAR"/>
-        <result column="category_name" property="categoryName" jdbcType="VARCHAR"/>
-        <result column="category_type" property="categoryType" jdbcType="VARCHAR"/>
-        <result column="parent_category" property="parentCategory" jdbcType="VARCHAR"/>
-        <result column="category_desc" property="categoryDesc" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="role" property="role" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
         <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER"/>
         <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
@@ -17,29 +16,26 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, category_id, category_name, category_type, parent_category, category_desc,
-        delete_flag, create_by, create_time, update_by, update_time
+        id, user_id, `password`, `role`, remark, delete_flag, create_by, create_time,
+        update_by, update_time
     </sql>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id"
-            parameterType="com.market.product.service8001.po.ProductCategoryPo">
-        insert into t_product_category
+            parameterType="com.market.user.service8002.po.UserPo">
+        insert into t_system_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             id,
-            <if test="categoryId != null">
-                category_id,
+            <if test="user_id != null">
+                user_id,
             </if>
-            <if test="categoryName != null">
-                category_name,
+            <if test="password != null">
+                `password`,
             </if>
-            <if test="categoryType != null">
-                category_type,
+            <if test="role != null">
+                `role`,
             </if>
-            <if test="parentCategory != null">
-                parent_category,
-            </if>
-            <if test="categoryDesc != null">
-                category_desc,
+            <if test="remark != null">
+                remark
             </if>
             <if test="deleteFlag != null">
                 delete_flag,
@@ -59,20 +55,17 @@
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             REPLACE(UUID(), "-", ""),
-            <if test="categoryId != null">
-                #{categoryId,jdbcType=VARCHAR},
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
             </if>
-            <if test="categoryName != null">
-                #{categoryName,jdbcType=VARCHAR},
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
             </if>
-            <if test="categoryType != null">
-                #{categoryType,jdbcType=VARCHAR},
+            <if test="role != null">
+                #{role,jdbcType=VARCHAR},
             </if>
-            <if test="parentCategory != null">
-                #{parentCategory,jdbcType=VARCHAR},
-            </if>
-            <if test="categoryDesc != null">
-                #{categoryDesc,jdbcType=VARCHAR},
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR}
             </if>
             <if test="deleteFlag != null">
                 #{deleteFlag,jdbcType=BIT},
@@ -92,12 +85,12 @@
         </trim>
     </insert>
 
-    <select id="queryByCategoryId" resultMap="BaseResultMap">
+    <select id="queryByUserId" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from t_product_category
+        from t_system_user
         where
-        category_id = #{categoryId, jdbcType=VARCHAR}
+        user_id = #{userId, jdbcType=VARCHAR}
     </select>
 
 </mapper>

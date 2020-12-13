@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.market.product.service8001.dao.ProductInventoryDao">
-    <resultMap id="BaseResultMap" type="com.market.product.service8001.po.ProductInventoryPo">
+<mapper namespace="com.market.user.service8002.dao.RoleDao">
+    <resultMap id="BaseResultMap" type="com.market.user.service8002.po.RolePo">
         <result column="id" property="id" jdbcType="VARCHAR"/>
-        <result column="product_id" property="productId" jdbcType="VARCHAR"/>
-        <result column="product_name" property="productName" jdbcType="VARCHAR"/>
-        <result column="count" property="count" jdbcType="INTEGER"/>
+        <result column="role_code" property="roleCode" jdbcType="VARCHAR"/>
+        <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
-        <result column="validation" property="validation" jdbcType="INTEGER"/>
+        <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER"/>
         <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
@@ -16,29 +15,26 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, product_id, product_name, `count`, remark, `validation`,create_by,
-        create_time, update_by, update_time
+        id, role_code, role_name, remark, delete_flag, create_by, create_time,
+        update_by, update_time
     </sql>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id"
-            parameterType="com.market.product.service8001.po.ProductInventoryPo">
-        insert into t_product_inventory
+            parameterType="com.market.user.service8002.po.RolePo">
+        insert into t_system_role
         <trim prefix="(" suffix=")" suffixOverrides=",">
             id,
-            <if test="productId != null">
-                product_id,
+            <if test="role_code != null">
+                role_code,
             </if>
-            <if test="productName != null">
-                product_name,
-            </if>
-            <if test="count != null">
-                `count`,
+            <if test="role_name != null">
+                role_name,
             </if>
             <if test="remark != null">
-                remark,
+                remark
             </if>
-            <if test="validation != null">
-                `validation`,
+            <if test="deleteFlag != null">
+                delete_flag,
             </if>
             <if test="createBy != null">
                 create_by,
@@ -55,20 +51,17 @@
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             REPLACE(UUID(), "-", ""),
-            <if test="productId != null">
-                #{productId,jdbcType=VARCHAR},
+            <if test="roleCode != null">
+                #{roleCode,jdbcType=VARCHAR},
             </if>
-            <if test="productName != null">
-                #{productName,jdbcType=VARCHAR},
-            </if>
-            <if test="count != null">
-                #{count,jdbcType=VARCHAR},
+            <if test="roleName != null">
+                #{roleName,jdbcType=VARCHAR},
             </if>
             <if test="remark != null">
-                #{remark,jdbcType=VARCHAR},
+                #{remark,jdbcType=VARCHAR}
             </if>
-            <if test="validation != null">
-                #{validation,jdbcType=VARCHAR},
+            <if test="deleteFlag != null">
+                #{deleteFlag,jdbcType=BIT},
             </if>
             <if test="createBy != null">
                 #{createBy,jdbcType=VARCHAR},
@@ -85,12 +78,12 @@
         </trim>
     </insert>
 
-    <select id="queryByProductId" resultMap="BaseResultMap">
+    <select id="queryByRoleCode" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from t_product_inventory
+        from t_system_role
         where
-        product_id = #{productId, jdbcType=VARCHAR}
+        role_code = #{roleCode, jdbcType=VARCHAR}
     </select>
 
 </mapper>

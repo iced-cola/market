@@ -2,6 +2,7 @@ package com.market.product.service8001.service.impl;
 
 import com.market.product.service8001.dao.ProductInventoryDao;
 import com.market.product.service8001.exception.ProductException;
+import com.market.product.service8001.po.ProductInfoPo;
 import com.market.product.service8001.po.ProductInventoryPo;
 import com.market.product.service8001.service.ProductService;
 import com.market.product.service8001.util.Result;
@@ -22,6 +23,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Resource
     private ProductInventoryDao inventoryDao;
+
+    public Result<Object> addProduct(ProductInfoPo productInfoPo) {
+        return null;
+    }
+
+    public Result<Object> delProduct(ProductInfoPo productInfoPo) {
+        return null;
+    }
+
+    public Result<Object> updateOnSaleStatus(ProductInfoPo productInfoPo) {
+        return null;
+    }
 
     public Result<Object> increaseStock(ProductInventoryPo inventoryPo) throws ProductException {
         // 商品数量不能小于等于0
@@ -48,6 +61,7 @@ public class ProductServiceImpl implements ProductService {
             return ResultUtil.failed("库存数量不足");
         }
 
+        // 减少库存，相当于加上负数
         int count = (-1) * inventoryPo.getCount();
         int result = inventoryDao.updateStock(inventoryPo.getProductId(), count);
         return ResultUtil.success(result);
